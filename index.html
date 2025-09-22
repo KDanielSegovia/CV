@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Daniel Segovia Medina - Curriculum Vitae</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0d1b2a;
+            --primary: #1b263b;
+            --secondary: #415a77;
+            --accent: #778da9;
+            --accent-alt: #e0e1dd;
+            --text: #e0e1dd;
+            --text-secondary: #c5c6c7;
+            --card-bg: rgba(27, 38, 59, 0.8);
+            --glow: 0 0 10px rgba(119, 141, 169, 0.5), 0 0 20px rgba(119, 141, 169, 0.3);
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Background particles */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .business-card {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(13, 27, 42, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--glow);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent);
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, #0d1b2a, #1b263b, #415a77);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(119, 141, 169, 0.2) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .profile-container {
+            position: relative;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: var(--glow);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(119, 141, 169, 0.8);
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .education {
+            font-size: 1.1rem;
+            color: var(--accent-alt);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-body {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: var(--card-bg);
+            position: relative;
+            border-right: 1px solid var(--accent);
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 400px;
+            padding: 30px;
+            background: rgba(27, 38, 59, 0.6);
+            position: relative;
+        }
+        
+        .info-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-item i {
+            font-size: 1.3rem;
+            margin-right: 15px;
+            color: var(--accent);
+            min-width: 25px;
+            padding-top: 3px;
+        }
+        
+        .section-title {
+            color: var(--accent-alt);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--white);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            background: var(--card-bg);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow);
+        }
+        
+        .skill-item.active {
+            background: var(--secondary);
+            box-shadow: 0 0 15px rgba(119, 141, 169, 0.8);
+            border-color: var(--accent-alt);
+        }
+        
+        .skill-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .skill-item:hover::after {
+            left: 100%;
+        }
+        
+        .cv-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(119, 141, 169, 0.3);
+        }
+        
+        .cv-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cv-period {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cv-company {
+            color: var(--accent-alt);
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .cv-position {
+            color: var(--accent-alt);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .cv-description {
+            color: var(--text-secondary);
+            margin-left: 15px;
+        }
+        
+        .cv-description ul {
+            list-style-type: none;
+        }
+        
+        .cv-description li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.5;
+        }
+        
+        .cv-description li:before {
+            content: "▹";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .website-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary-dark), var(--secondary));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent);
+        }
+        
+        .website-link:hover {
+            background: linear-gradient(45deg, var(--secondary), var(--primary-dark));
+            box-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+        
+        /* GIF Container */
+        .gif-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(27, 38, 59, 0.4);
+            border: 1px solid var(--accent);
+            transition: all 0.5s ease;
+        }
+        
+        .gif-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(119, 141, 169, 0.4);
+            transition: all 0.5s ease;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        
+        .gif-title {
+            color: var(--accent-alt);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            transition: all 0.5s ease;
+        }
+        
+        /* Name pulsation animation */
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px rgba(224, 225, 221, 0.7); }
+            50% { text-shadow: 0 0 20px rgba(224, 225, 221, 0.9), 0 0 30px rgba(224, 225, 221, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(224, 225, 221, 0.7); }
+        }
+        
+        .name {
+            animation: pulse 3s infinite ease-in-out;
+        }
+        
+        /* Appearance effect for elements */
+        .cv-item, .info-item, .skill-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .card-body {
+                flex-direction: column;
+            }
+            
+            .sidebar, .main-content {
+                min-width: 100%;
+            }
+            
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--accent);
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="business-card">
+        <div class="card-header">
+            <div class="profile-container">
+                <!-- Reemplaza la URL con la ruta de tu foto -->
+                <img src="https://placeholder.com/150" alt="Kevin Daniel Segovia Medina" class="profile-image">
+            </div>
+            <h1 class="name">KEVIN DANIEL SEGOVIA MEDINA</h1>
+            <p class="title">Data & Full-Stack Business Partner</p>
+            <p class="education">Mechatronics Engineering</p>
+        </div>
+        
+        <div class="card-body">
+            <div class="sidebar">
+                <h2 class="section-title">Contact</h2>
+                
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>8115265587</span>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>kevindanseg@hotmail.com</span>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Monterrey, Nuevo León, Mexico</span>
+                </div>
+                
+                <!-- GIF Container - Futurista -->
+                <div class="gif-container">
+                    <div class="gif-title">Data & AI Vision</div>
+                    <img id="skill-image" src="https://media.giphy.com/media/LMt9638dO8dftAjtco/giphy.gif" alt="Futuristic Tech Animation">
+                </div>
+                
+                <h2 class="section-title">Skills</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-item" data-skill="python">Python</div>
+                    <div class="skill-item" data-skill="sql">SQL</div>
+                    <div class="skill-item" data-skill="cpp">C++</div>
+                    <div class="skill-item" data-skill="java">Java</div>
+                    <div class="skill-item" data-skill="pyspark">PySpark</div>
+                    <div class="skill-item" data-skill="flask">Flask</div>
+                    <div class="skill-item" data-skill="react">React</div>
+                    <div class="skill-item" data-skill="html">HTML</div>
+                    <div class="skill-item" data-skill="css">CSS</div>
+                    <div class="skill-item" data-skill="javascript">JavaScript</div>
+                    <div class="skill-item" data-skill="n8n">n8n</div>
+                    <div class="skill-item" data-skill="powerbi">Power BI</div>
+                    <div class="skill-item" data-skill="powerautomate">Power Automate</div>
+                    <div class="skill-item" data-skill="powerapps">Power Apps</div>
+                    <div class="skill-item" data-skill="databricks">Databricks</div>
+                    <div class="skill-item" data-skill="anaconda">Anaconda</div>
+                    <div class="skill-item" data-skill="edl">EDL</div>
+                    <div class="skill-item" data-skill="github">GitHub</div>
+                    <div class="skill-item" data-skill="datascience">Data Science</div>
+                    <div class="skill-item" data-skill="agile">Agile Methodology</div>
+                </div>
+                
+                <a href="mailto:kevindanseg@hotmail.com" class="website-link">Contact by email</a>
+            </div>
+            
+            <div class="main-content">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="cv-item">
+                    <div class="cv-period">Apr 2025 - Present</div>
+                    <div class="cv-company">Ethernai</div>
+                    <div class="cv-position">DATA & FULL-STACK BUSINESS PARTNER</div>
+                    <div class="cv-description">
+                        <ul>
+                            <li>Developed and deployed full-stack and low-code applications, integrating React, HTML/CSS, backend services, and Power Platform to deliver real-time insights and support business decisions.</li>
+                            <li>Engineered data-driven solutions and automated workflows using Python, PySpark, SQL, and N8N, including ML models and IoT-integrated systems, optimizing operations, KPIs, and cost efficiency.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-period">Jan 2024 - Apr 2025</div>
+                    <div class="cv-company">John Deere</div>
+                    <div class="cv-position">BUSINESS INTELLIGENCE ANALYST</div>
+                    <div class="cv-description">
+                        <ul>
+                            <li>Developed a global ML-powered platform for HTS parts classification, integrating Python (Flask) APIs, Java services, PySpark and SQL pipelines, Data Lake, and HTML/CSS/React frontend, enabling Trade Compliance teams across all Deere locations to classify parts efficiently.</li>
+                            <li>Engineered and trained NLP/ML models on standardized part datasets using Python and PySpark, to automatically classify parts, generate context-aware questions, and reduce human error through an active learning feedback loop.</li>
+                            <li>Built interactive dashboards to track cost avoidance metrics, classification accuracy, and workflow efficiency, providing stakeholders with real-time, data-driven insights.</li>
+                            <li>Implemented automated workflows to dynamically route missing information to engineering teams globally, enabling scalable processing of 12M parts while ensuring high-quality, validated results.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-period">Jun 2022 - Jan 2024</div>
+                    <div class="cv-company">John Deere</div>
+                    <div class="cv-position">DATA PRODUCT ENGINEER</div>
+                    <div class="cv-description">
+                        <ul>
+                            <li>Created databases on EDL and SharePoint for real-time HTS classification visibility and faster decision-making.</li>
+                            <li>Used Databricks to enhance data quality by cleaning and organizing SIR data, making it easier to interpret and use.</li>
+                            <li>Built a Power BI tool using SQL and Python for technical data access, speeding up classification.</li>
+                            <li>Developed dashboards in Power BI for stakeholders, improving decision-making and trend analysis.</li>
+                            <li>Created an automated workflow in Power Automate, sending questions to suppliers and engineers, reducing team workload by 75%.</li>
+                            <li>Built a Power Apps tool automating 45% of the HTS backlog, expanding as more contacts were added.</li>
+                            <li>Automated SIR entry, reducing workload from 1,397 to 186 hours per year (86% reduction).</li>
+                            <li>Automated daily tasks with Python under Scrum Agile.</li>
+                            <li>Collaborated with teams across the organization and with EY (the classifier) to streamline operations.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-period">Jul 2021 - May 2022</div>
+                    <div class="cv-company">John Deere</div>
+                    <div class="cv-position">MANUFACTURING PDP INTERN</div>
+                    <div class="cv-description">
+                        <ul>
+                            <li>Performed operational method sheets and technical data sheets before and after durability build.</li>
+                            <li>Modified Dxf files for manufacturing part numbers.</li>
+                            <li>Modified assemblies and part numbers on Creo Parametric.</li>
+                            <li>Developed layout proposals for modification in 3 different lines.</li>
+                            <li>Performed SERAS to assess the risks and safety in product's fabrication.</li>
+                            <li>Assisted in manufacturing part numbers and troubleshooting floor issues.</li>
+                            <li>Reviewed modifications and changes to tools.</li>
+                            <li>Managed development of assemblies and welding placements.</li>
+                            <li>Checked drawings for modifications after DB.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="cv-item">
+                    <div class="cv-period">Aug 2020 - Jul 2021</div>
+                    <div class="cv-company">Welding & Cutting</div>
+                    <div class="cv-position">NPI ENGINEER</div>
+                    <div class="cv-description">
+                        <ul>
+                            <li>Developed of Bill of Materials.</li>
+                            <li>Developed of new products and projects.</li>
+                            <li>Performed nesting programs in Smartnest and Lantek.</li>
+                            <li>Performed drawings in AutoCAD and Solidworks.</li>
+                            <li>Modified PPAP's for new models.</li>
+                            <li>Evaluated and qualified the best supplier options.</li>
+                            <li>Participated in continuous improvement by making different intern projects.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Mapeo de habilidades a imágenes
+        const skillImages = {
+            'python': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png',
+            'sql': 'https://www.svgrepo.com/show/331760/sql-database-generic.svg',
+            'cpp': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png',
+            'java': 'https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png',
+            'pyspark': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/1200px-Apache_Spark_logo.svg.png',
+            'flask': 'https://flask.palletsprojects.com/en/2.3.x/_images/flask-logo.png',
+            'react': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+            'html': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png',
+            'css': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png',
+            'javascript': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+            'n8n': 'https://avatars.githubusercontent.com/u/54405537?s=280&v=4',
+            'powerbi': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png',
+            'powerautomate': 'https://learn.microsoft.com/es-es/power-automate/media/pa-logo-icon-colored.png',
+            'powerapps': 'https://learn.microsoft.com/es-es/power-apps/media/pa-logo-icon-colored.png',
+            'databricks': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Databricks_Logo.png/1200px-Databricks_Logo.png',
+            'anaconda': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Anaconda_Logo.png/240px-Anaconda_Logo.png',
+            'edl': 'https://www.svgrepo.com/show/354342/azure-data-lake-storage.svg',
+            'github': 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+            'datascience': 'https://cdn-icons-png.flaticon.com/512/2103/2103830.png',
+            'agile': 'https://cdn-icons-png.flaticon.com/512/1688/1688400.png',
+            'default': 'https://media.giphy.com/media/LMt9638dO8dftAjtco/giphy.gif'
+        };
+
+        // Títulos para cada habilidad
+        const skillTitles = {
+            'python': 'Python Programming',
+            'sql': 'SQL Database Management',
+            'cpp': 'C++ Development',
+            'java': 'Java Programming',
+            'pyspark': 'PySpark Data Processing',
+            'flask': 'Flask Web Framework',
+            'react': 'React Frontend Development',
+            'html': 'HTML Markup',
+            'css': 'CSS Styling',
+            'javascript': 'JavaScript Programming',
+            'n8n': 'n8n Workflow Automation',
+            'powerbi': 'Power BI Data Visualization',
+            'powerautomate': 'Power Automate Workflows',
+            'powerapps': 'Power Apps Development',
+            'databricks': 'Databricks Analytics',
+            'anaconda': 'Anaconda Data Science',
+            'edl': 'Enterprise Data Lake',
+            'github': 'GitHub Version Control',
+            'datascience': 'Data Science & Analytics',
+            'agile': 'Agile Methodology',
+            'default': 'Data & AI Vision'
+        };
+
+        // Particles.js initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#778da9" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#778da9",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        out_mode: "out"
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" }
+                    }
+                }
+            });
+            
+            // Animation for elements when scrolling
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.cv-item, .info-item, .skill-item').forEach(item => {
+                observer.observe(item);
+            });
+            
+            // Skill selection functionality
+            const skillItems = document.querySelectorAll('.skill-item');
+            const skillImage = document.getElementById('skill-image');
+            const gifTitle = document.querySelector('.gif-title');
+            
+            skillItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all skills
+                    skillItems.forEach(skill => skill.classList.remove('active'));
+                    
+                    // Add active class to clicked skill
+                    this.classList.add('active');
+                    
+                    // Get the skill identifier
+                    const skill = this.getAttribute('data-skill');
+                    
+                    // Change image and title
+                    if (skillImages[skill]) {
+                        skillImage.src = skillImages[skill];
+                        gifTitle.textContent = skillTitles[skill];
+                    } else {
+                        skillImage.src = skillImages['default'];
+                        gifTitle.textContent = skillTitles['default'];
+                    }
+                });
+            });
+            
+            // Add hover effect for skills
+            skillItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const skill = this.getAttribute('data-skill');
+                    if (skillImages[skill]) {
+                        this.title = `Click to see ${skillTitles[skill]}`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
